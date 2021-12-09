@@ -1,4 +1,4 @@
-# Statendee Maven Tools ![Java CI with Maven](https://github.com/statendee/statendee_maven_tools/workflows/Java%20CI%20with%20Maven/badge.svg)
+# Statendee Maven Tools ![Build with Maven and Release](https://github.com/statendee/statendee_maven_utils/actions/workflows/maven_release.yml/badge.svg)
 
 A library that can be used to obtain version information of maven artifacts and to download them.
 
