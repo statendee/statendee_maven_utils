@@ -169,6 +169,7 @@ public class MavenArtifact {
    * Returns the latest {@code SNAPSHOT}-build (including timestamp and build number) of a specific
    * {@code SNAPSHOT}-version available in the maven repository as a {@link ComparableVersion}.
    *
+   * @param snapshotVersion the {@code SNAPSHOT}-version to retrieve the {@code SNAPSHOT}-build for.
    * @return the latest {@code SNAPSHOT}-build (including timestamp and build number) for specified {@code SNAPSHOT}-version.
    * @throws IOException if an I/O error occurs e.g. while parsing the {@link InputStream}.
    * @throws RequestException if the server returned an response code other than 4xx or 5xx.
