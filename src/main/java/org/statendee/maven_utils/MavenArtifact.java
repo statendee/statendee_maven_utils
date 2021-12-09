@@ -177,7 +177,7 @@ public class MavenArtifact {
    * @throws SAXException if any parse errors occur.
    * @since 0.1.0
    */
-  private ComparableVersion getLatestSnapshotBuild(ComparableVersion snapshotVersion)
+  public ComparableVersion getLatestSnapshotBuild(ComparableVersion snapshotVersion)
       throws IOException, RequestException, ParserConfigurationException, SAXException {
 
     Element versioning = getVersioning(getURLFromCoordinates() + "/" + snapshotVersion);
