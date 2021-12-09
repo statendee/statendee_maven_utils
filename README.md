@@ -4,7 +4,15 @@ A library that can be used to obtain version information of maven artifacts and 
 
 ## Usage
 
-Add dependency in `pom.xml`.
+Add repository and dependency in `pom.xml`.
+
+```xml
+<repository>
+    <id>maven_statendee</id>
+    <name>statendee maven packages</name>
+    <url>https://maven.statendee.org</url>
+</repository>
+```
 
 ```xml
 <dependency>
