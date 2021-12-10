@@ -1,4 +1,4 @@
-# Statendee Maven Tools ![Build with Maven and Release](https://github.com/statendee/statendee_maven_utils/actions/workflows/maven_release.yml/badge.svg)
+# Statendee Maven Utils ![Build with Maven and Release](https://github.com/statendee/statendee_maven_utils/actions/workflows/maven_release.yml/badge.svg)
 
 A library that can be used to obtain version information of maven artifacts and to download them.
 
