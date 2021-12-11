@@ -37,12 +37,21 @@ import java.io.IOException;
 public class Main {
   public static void main(String[] args)
       throws IOException, ParserConfigurationException, RequestException, SAXException {
-    String repo = args[0], groupId = args[1], artifactID = args[2], username = args[3], token = args[4];
+    String repo = args[0],
+        groupId = args[1],
+        artifactID = args[2],
+        username = args[3],
+        token = args[4];
     MavenArtifact artifact = new MavenArtifact(repo, groupId, artifactID, username, token);
     ComparableVersion releaseVersion = artifact.getLatestReleaseVersion(); // 1.2.3
-    ComparableVersion latestVersion = artifact.getLatestVersion(); // 1.2.3-SNAPSHOT-20211208.214238-4
+    ComparableVersion latestVersion =
+        artifact.getLatestVersion(); // 1.2.3-SNAPSHOT-20211208.214238-4
 
-    artifact.download(releaseVersion, "jar-with-dependencies", "jar", "path/to/target-file.jar"); // Downloads version 1.2.3.
+    artifact.download(
+        releaseVersion,
+        "jar-with-dependencies",
+        "jar",
+        "path/to/target-file.jar"); // Downloads version 1.2.3.
   }
 }
 ```
