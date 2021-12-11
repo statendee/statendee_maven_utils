@@ -27,10 +27,16 @@ Get latest (release) version and download it:
 
 ```java
 import org.statendee.maven_utils.MavenArtifact;
+import org.statendee.maven_utils.RequestException;
 import org.statendee.maven_utils.version.ComparableVersion;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 
 public class Main {
-  public static void main(String[] args) {
+  public static void main(String[] args)
+      throws IOException, ParserConfigurationException, RequestException, SAXException {
     String repo = args[0], groupId = args[1], artifactID = args[2], username = args[3], token = args[4];
     MavenArtifact artifact = new MavenArtifact(repo, groupId, artifactID, username, token);
     ComparableVersion releaseVersion = artifact.getLatestReleaseVersion(); // 1.2.3
