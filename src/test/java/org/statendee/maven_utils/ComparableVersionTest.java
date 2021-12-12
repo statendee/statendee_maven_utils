@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * A class that contains {@link Test}s for to test the {@link ComparableVersion} class.
  *
  * @author jojomatik
- * @version 0.1.0
+ * @version 0.2.0
  * @since 0.1.0
  */
 class ComparableVersionTest {
@@ -40,46 +40,73 @@ class ComparableVersionTest {
     // Different minor version.
     ComparableVersion version1 = new ComparableVersion("0.4.5");
     ComparableVersion version2 = new ComparableVersion("0.4.6");
-    assertEquals(-1, version1.compareTo(version2));
+    assertEquals(
+        -1,
+        version1.compareTo(version2),
+        version2 + " should be higher than " + version1 + ", but it is not!");
 
     // SNAPSHOT and newer non-SNAPSHOT.
     version1 = new ComparableVersion("0.4.5-SNAPSHOT");
     version2 = new ComparableVersion("0.4.5");
-    assertEquals(-1, version1.compareTo(version2));
+    assertEquals(
+        -1,
+        version1.compareTo(version2),
+        version2 + " should be higher than " + version1 + ", but it is not!");
 
     // non-SNAPSHOT and newer SNAPSHOT.
     version1 = new ComparableVersion("0.4.4");
     version2 = new ComparableVersion("0.4.5-SNAPSHOT");
-    assertEquals(-1, version1.compareTo(version2));
+    assertEquals(
+        -1,
+        version1.compareTo(version2),
+        version2 + " should be higher than " + version1 + ", but it is not!");
 
     // different timestamp
     version1 = new ComparableVersion("0.4.5-SNAPSHOT-20211208.182235");
     version2 = new ComparableVersion("0.4.5-SNAPSHOT-20211208.182236");
-    assertEquals(-1, version1.compareTo(version2));
+    assertEquals(
+        -1,
+        version1.compareTo(version2),
+        version2 + " should be higher than " + version1 + ", but it is not!");
 
     // different minor in SNAPSHOT versions
     version1 = new ComparableVersion("0.4.5-SNAPSHOT-20211208.182235");
     version2 = new ComparableVersion("0.4.6-SNAPSHOT-20211208.182236");
-    assertEquals(-1, version1.compareTo(version2));
+    assertEquals(
+        -1,
+        version1.compareTo(version2),
+        version2 + " should be higher than " + version1 + ", but it is not!");
 
     // different minor in SNAPSHOT versions, with same timestamp (should never happen)
     version1 = new ComparableVersion("0.4.5-SNAPSHOT-20211208.182235");
     version2 = new ComparableVersion("0.4.6-SNAPSHOT-20211208.182235");
-    assertEquals(-1, version1.compareTo(version2));
+    assertEquals(
+        -1,
+        version1.compareTo(version2),
+        version2 + " should be higher than " + version1 + ", but it is not!");
 
     // same version
     version1 = new ComparableVersion("0.4.5");
     version2 = new ComparableVersion("0.4.5");
-    assertEquals(0, version1.compareTo(version2));
+    assertEquals(
+        0,
+        version1.compareTo(version2),
+        version2 + " should equal " + version1 + ", but it does not!");
 
     // same SNAPSHOT version
     version1 = new ComparableVersion("0.4.5-SNAPSHOT-20211208.182235");
     version2 = new ComparableVersion("0.4.5-SNAPSHOT-20211208.182235");
-    assertEquals(0, version1.compareTo(version2));
+    assertEquals(
+        0,
+        version1.compareTo(version2),
+        version2 + " should equal " + version1 + ", but it does not!");
 
     // different build number (should be treated as synonymous, if timestamp equals)
     version1 = new ComparableVersion("0.4.5-SNAPSHOT-20211208.182235");
     version2 = new ComparableVersion("0.4.5-SNAPSHOT-20211208.182235-1");
-    assertEquals(0, version1.compareTo(version2));
+    assertEquals(
+        0,
+        version1.compareTo(version2),
+        version2 + " should equal " + version1 + " as build numbers are ignored, but it does not!");
   }
 }
