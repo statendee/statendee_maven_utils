@@ -20,7 +20,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * A class that contains {@link Test}s for to test the {@link ComparableVersion} class.
+ * A class that contains {@link Test}s to test the {@link ComparableVersion} class.
  *
  * @author jojomatik
  * @version 0.2.0
