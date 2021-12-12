@@ -17,8 +17,10 @@ package org.statendee.maven_utils;
 
 import org.junit.jupiter.api.Test;
 import org.statendee.maven_utils.version.ComparableVersion;
+import org.statendee.maven_utils.version.NoSnapshotVersionException;
+import org.statendee.maven_utils.version.NoTimestampException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * A class that contains {@link Test}s for to test the {@link ComparableVersion} class.
@@ -108,5 +110,62 @@ class ComparableVersionTest {
         0,
         version1.compareTo(version2),
         version2 + " should equal " + version1 + " as build numbers are ignored, but it does not!");
+  }
+
+  /**
+   * A {@link Test} that checks, if the correct {@link Exception}s are thrown under certain circumstances.
+   *
+   * @since 0.2.0
+   */
+  @Test
+  void testExceptions() {
+    ComparableVersion noSnapshotVersion = new ComparableVersion("0.4.5");
+    assertThrows(
+        NoSnapshotVersionException.class,
+        noSnapshotVersion::getTimestamp,
+        "Calling 'getTimestamp()' on "
+            + noSnapshotVersion
+            + " should throw a "
+            + NoSnapshotVersionException.class
+            + ", but it does not!");
+
+    ComparableVersion noTimestampVersion = new ComparableVersion("0.4.5-SNAPSHOT");
+    assertThrows(
+        NoTimestampException.class,
+        noTimestampVersion::getTimestamp,
+        "Calling 'getTimestamp()' on "
+            + noTimestampVersion
+            + " should throw a "
+            + NoTimestampException.class
+            + ", but it does not!");
+  }
+
+  /**
+   * A {@link Test} that checks, if it possible to get the current version without build timestamp
+   * and build number.
+   *
+   * @since 0.2.0
+   */
+  @Test
+  void stripBuildInfo() {
+    ComparableVersion releaseVersion = new ComparableVersion("0.4.5");
+    assertSame(
+        releaseVersion,
+        releaseVersion.getVersionWithoutBuildInfo(),
+        "Calling 'getVersionWithoutBuildInfo()' on "
+            + releaseVersion
+            + " should return the same object, but it does not!");
+
+    ComparableVersion snapshotVersion = new ComparableVersion("0.4.5-SNAPSHOT-20211208.182235-1");
+    ComparableVersion expectedVersion =
+        new ComparableVersion(snapshotVersion.toString().split("-")[0] + "-SNAPSHOT");
+    assertEquals(
+        expectedVersion,
+        snapshotVersion.getVersionWithoutBuildInfo(),
+        "Calling 'getVersionWithoutBuildInfo()' on "
+            + snapshotVersion
+            + " should return the release version suffixed with '-SNAPSHOT' (i.e. "
+            + expectedVersion
+            + "), but it does not!");
   }
 }
