@@ -6,7 +6,7 @@
 
     <groupId>org.statendee</groupId>
     <artifactId>statendee_maven_utils</artifactId>
-    <version>0.2.0</version>
+    <version>0.2.1</version>
 
     <licenses>
         <license>
