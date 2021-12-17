@@ -38,7 +38,7 @@ import java.nio.file.StandardCopyOption;
  * A {@link MavenArtifact} represents an artifact in a maven repository.
  *
  * @author jojomatik
- * @version 0.2.0
+ * @version 0.2.1
  * @since 0.1.0
  */
 public class MavenArtifact {
