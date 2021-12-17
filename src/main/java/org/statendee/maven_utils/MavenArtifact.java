@@ -82,13 +82,15 @@ public class MavenArtifact {
    * Creates an instance of {@link MavenArtifact} based on the URL of the repository, the groupId
    * and the artifactId.
    *
+   * <p>Appends a trailing slash to the repository if it's missing.
+   *
    * @param repository the URL to the repository that contains the artifact.
    * @param groupId the URL to the repository that contains the artifact.
    * @param artifactId the artifactId of the artifact.
    * @since 0.1.0
    */
   public MavenArtifact(String repository, String groupId, String artifactId) {
-    this.repository = repository;
+    this.repository = repository.endsWith("/") ? repository : (repository + "/");
     this.groupId = groupId;
     this.artifactId = artifactId;
   }
@@ -96,6 +98,8 @@ public class MavenArtifact {
   /**
    * Creates an instance of {@link MavenArtifact} based on the URL of the repository, the groupId,
    * the artifactId and the credentials.
+   *
+   * <p>Appends a trailing slash to the repository if it's missing.
    *
    * @param repository the URL to the repository that contains the artifact.
    * @param groupId the URL to the repository that contains the artifact.
